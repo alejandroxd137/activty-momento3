@@ -1,39 +1,41 @@
 import java.util.concurrent.Semaphore;
 
 public class Ascensor {
-	
-	private int pisoActual;
-    private int pisoMinimo;
-    private int pisoMaximo;
-    private boolean enMovimiento;
-    private String direccion;
 
-    
-    public Ascensor (int pisoMinimo, int pisoMaximo) {
-    this.pisoMinimo = pisoMinimo;
-    this.pisoMaximo = pisoMaximo;
-    this.pisoActual = 0;  
-    this.enMovimiento = false; 
-    this.direccion = "detenido";
+    protected int pisoActual;
+    protected int capacidadMaxima;
+    protected Semaphore semaforo;
+
+    //constructor//
+
+    public  Ascensor  (int capacidad) {
+        this.pisoActual = 0;
+        this.capacidadMaxima = capacidad;
+        this.semaforo = new Semaphore(capacidad);
+     
+    }
+            
+       public void subir() throws InterruptedException  {
+        semaforo.acquire();
+        System.out.println("Persona  subió al ascensor");
+       
+ }
+
+     
+      public void  irApiso(int piso) {
+        this.pisoActual = piso;
+        System.out.println("Ascensor en piso: " + piso );
+
+      }
 
  }
-    
-      public int getpisoActual()   { return pisoActual; }
-  
-      public int getpisoMinimo()   { return pisoMinimo; }
 
-     public  int getpisoMaximo()   { return pisoMaximo; } 
- 
-     public  boolean isEnMovimiento()  {return enMovimiento; }
-  
 
-    public boolean pisoValido(int piso) { 
-     return  piso >= pisoMinimo && piso<= pisoMaximo ;  
-     
+
+
+
 
 
 
     
-
     
-        
