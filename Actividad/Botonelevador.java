@@ -12,7 +12,7 @@
    public void presionarBoton(int piso) {
       this.presionado = true;
    System.out.println("Boton presionado piso" + piso);
-      irAPiso (piso);
+      irApiso (piso);
      this.presionado = false;
 
    }
